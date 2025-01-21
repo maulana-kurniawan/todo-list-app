@@ -25,7 +25,15 @@
 								@foreach ($todos as $todo)
 																<tr>
 																	<th class="text-center">
-																		<span>{{ $loop->iteration }}.</span>
+																		<span>
+																			<div class="form-check">
+																				<form action="{{ route('todos.markAsDone', $todo->id) }}" method="POST">
+																					@csrf
+																					@method('PATCH')
+																					<input class="form-check-input" type="checkbox" {{ $todo->status == 'done' ? ' checked' : '' }} onchange="this.form.submit()">
+																				</form>
+																			</div>
+																		</span>
 																	</th>
 																	<td class="text-break {{ $todo->status == 'done' ? 'text-decoration-line-through' : 'text-decoration-none' }}">
 																		<span>{{ $todo->todo }}</span>
@@ -54,11 +62,6 @@
 																		<span class="text-uppercase fw-bold">{{ $todo->status }}</span>
 																	</td>
 																	<td class="text-center">
-																		<form action="{{ route('todos.markAsDone', $todo->id) }}" method="POST" style="display:inline;">
-																			@csrf
-																			@method('PATCH')
-																			<button type="submit" class="btn" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Mark as done"><i class="fas fa-square-check fa-lg text-success me-2"></i></button>
-																		</form>
 																		<a href="{{ route('todos.edit', $todo->id) }}" type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit"><i class="fas fa-edit fa-lg text-primary me-2"></i></a>
 																		<form action="{{ route('todos.destroy', $todo->id) }}" method="POST" style="display:inline;">
 																			@csrf
