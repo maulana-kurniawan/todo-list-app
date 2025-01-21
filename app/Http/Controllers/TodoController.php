@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
 	public function index()
 	{
-		$todos = Todo::all();
+		$todos = Todo::where('user_id', auth()->id())->get();
 
 		return view('todos', compact('todos'));
 	}
@@ -84,7 +84,8 @@ class TodoController extends Controller
 	{
 		$todo = Todo::findOrFail($id);
 
-		$todo->update(['status' => 'done']);
+		$newStatus = $todo->status === 'done' ? 'waiting' : 'done';
+		$todo->update(['status' => $newStatus]);
 
 		return redirect()->route('todos.index')->with('success', 'Todo marked as done!');
 	}
