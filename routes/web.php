@@ -8,7 +8,7 @@ Route::middleware('guest')->group(function () {
 	Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 	Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 	Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-	Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+	Route::get('/', [AuthController::class, 'showLoginForm']);
 });
 
 Route::middleware('auth')->group(function () {
