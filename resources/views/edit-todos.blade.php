@@ -7,11 +7,11 @@
 				<div class="text-center pb-3">
 					<h1 class="my-4 h1 text-black">Edit Todo</h1>
 				</div>
-				<div class="card">
-					<div class="card-body">
-						<form action="{{ route('todos.update', $todo->id) }}" method="POST">
-							@csrf
-							@method('PUT')
+				<form action="{{ route('todos.update', $todo->id) }}" method="POST">
+					@csrf
+					@method('PUT')
+					<div class="card">
+						<div class="card-body">
 							<div class="mb-3">
 								<label for="todo" class="col-form-label">Task</label>
 								<input type="text" class="form-control" id="todo" name="todo" value="{{ $todo->todo }}">
@@ -32,14 +32,15 @@
 								<input type="date" class="form-control" id="deadline_date" name="deadline_date" value="{{ $todo->deadline_date }}">
 								@error('deadline_date') <span class="text-danger">{{ $message }}</span> @enderror
 							</div>
+						</div>
+						<div class="card-footer text-end">
+							<a href="{{ route('todos.index') }}" type="button" class="btn btn-danger">Cancel</a>
+							<button type="submit" class="btn btn-success">Save</button>
+						</div>
 					</div>
-					<div class="card-footer text-end">
-						<a href="{{ route('todos.index') }}" type="button" class="btn btn-danger">Cancel</a>
-						<button type="submit" class="btn btn-success">Save</button>
-					</div>
-					</form>
-				</div>
+				</form>
 			</div>
 		</div>
+	</div>
 </section>
 @endsection
