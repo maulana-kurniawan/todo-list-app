@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\TodoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TodoController;
 
 Route::middleware('guest')->group(function () {
 	Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
