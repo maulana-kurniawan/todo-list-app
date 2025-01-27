@@ -20,23 +20,45 @@
 						url: '{{ asset('assets/js/datatables-id.json') }}',
 				},
 				initComplete: function() {
-						this.api()
-								.columns([2, 3, 4])
-								.every(function() {
-										let column = this;
-										let title = column.footer().textContent;
+						const api = this.api();
 
-										let input = document.createElement('input');
-										input.classList.add('form-control');
-										input.placeholder = title;
-										column.footer().replaceChildren(input);
-
-										input.addEventListener('keyup', () => {
-												if (column.search() !== this.value) {
-														column.search(input.value).draw();
-												}
+						api.columns(2).every(function() {
+								const column = this;
+								const title = column.footer().textContent;
+								const select = $('<select class="form-select"><option value="">' + title + '</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select>')
+										.appendTo($(column.footer()).empty())
+										.on('change', function() {
+												const val = $(this).val();
+												column.search(val).draw();
 										});
-								});
+						});
+
+						api.columns(3).every(function() {
+								const column = this;
+								const input = $('<input type="date" class="form-control">')
+										.appendTo($(column.footer()).empty())
+										.on('change', function() {
+												const val = $(this).val();
+												const date = new Date(val);
+												const options = {
+														year: "numeric",
+														month: "long",
+														day: "numeric",
+												};
+												column.search(date.toLocaleDateString("id-ID", options)).draw();
+										});
+						});
+
+						api.columns(4).every(function() {
+								const column = this;
+								const title = column.footer().textContent;
+								const select = $('<select class="form-select"><option value="">' + title + '</option><option value="done">Done</option><option value="waiting">Waiting</option></select>')
+										.appendTo($(column.footer()).empty())
+										.on('change', function() {
+												const val = $(this).val();
+												column.search(val).draw();
+										});
+						});
 				},
 				fixedHeader: {
 						footer: true,
