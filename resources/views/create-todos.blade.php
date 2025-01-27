@@ -3,7 +3,7 @@
 		<section class="vh-100">
 				<div class="h-100 container py-5">
 						<div class="row d-flex justify-content-center align-items-center h-100">
-								<div class="col-md-12 col-xl-10">
+								<div class="col-12">
 										<div class="pb-3 text-center">
 												<h1 class="h1 my-4 text-black">Create Todo</h1>
 										</div>
