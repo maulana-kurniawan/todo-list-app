@@ -3,7 +3,7 @@
 		<section class="vh-100">
 				<div class="h-100 container py-5">
 						<div class="row d-flex justify-content-center align-items-center h-100">
-								<div class="col-lg-4 col-sm-12">
+								<div class="col-12">
 										<div class="pb-3 text-center">
 												<h1 class="h1 my-4 text-black">Task List</h1>
 												<a
@@ -112,33 +112,35 @@
 																								<span class="text-uppercase fw-bold">{{ $todo->status }}</span>
 																						</td>
 																						<td class="text-center">
-																								<a
-																										class="btn"
-																										data-bs-toggle="tooltip"
-																										data-bs-placement="top"
-																										data-bs-title="Edit"
-																										type="button"
-																										href="{{ route('todos.edit', $todo->id) }}"
-																								>
-																										<i class="fas fa-edit fa-lg text-primary me-2"></i>
-																								</a>
-																								<form
-																										style="display: inline"
-																										action="{{ route('todos.destroy', $todo->id) }}"
-																										method="POST"
-																								>
-																										@csrf
-																										@method('DELETE')
-																										<button
-																												class="btn"
+																								<div class="d-flex justify-content-center align-items-center gap-2">
+																										<a
+																												class="btn btn-link text-decoration-none p-0"
 																												data-bs-toggle="tooltip"
-																												data-bs-placement="bottom"
-																												data-bs-title="Delete"
-																												type="submit"
+																												data-bs-placement="top"
+																												data-bs-title="Edit"
+																												href="{{ route('todos.edit', $todo->id) }}"
 																										>
-																												<i class="fas fa-trash fa-lg text-danger"></i>
-																										</button>
-																								</form>
+																												<i class="fas fa-edit fa-lg text-primary"></i>
+																										</a>
+
+																										<form
+																												class="m-0 p-0"
+																												action="{{ route('todos.destroy', $todo->id) }}"
+																												method="POST"
+																										>
+																												@csrf
+																												@method('DELETE')
+																												<button
+																														class="btn btn-link text-decoration-none p-0"
+																														data-bs-toggle="tooltip"
+																														data-bs-placement="bottom"
+																														data-bs-title="Delete"
+																														type="submit"
+																												>
+																														<i class="fas fa-trash fa-lg text-danger"></i>
+																												</button>
+																										</form>
+																								</div>
 																						</td>
 																				</tr>
 																		@endforeach
