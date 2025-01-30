@@ -11,7 +11,3 @@ Created by me for IAM Ciamis web developer job apply test.
 - Login with this account:
   - Email: `user@example.com`
   - Password: `123`
-
-## Live Preview
-
-[https://todolist.amisbudi.cloud](https://todolist.amisbudi.cloud)
